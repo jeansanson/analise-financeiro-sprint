@@ -1,6 +1,13 @@
 <template>
   <v-container>
-    <h1>Empresas</h1>
+    <h1 class="mt-2 mb-2">Empresas</h1>
+    <v-data-table
+      :headers="headers"
+      :items="stocks"
+      :items-per-page="rowCountLimit"
+      hide-default-footer
+      class="elevation-1"
+    ></v-data-table>
   </v-container>
 </template>
 
@@ -12,6 +19,11 @@ const parser = new DomParser();
 export default {
   name: "Empresas",
 
+  data: () => ({
+    headers: [],
+    stocks: [],
+    rowCountLimit: 0,
+  }),
   created() {
     const formData = new FormData();
     formData.append("firma_ebit_min", "0");
@@ -98,11 +110,13 @@ export default {
         });
         gridRows.push(gridRow);
       });
-      
+
+      this.headers = gridHeaders;
+      this.stocks = gridRows;
+      this.rowCountLimit = rowCountLimit;
     });
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
