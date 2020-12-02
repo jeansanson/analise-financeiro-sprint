@@ -81,8 +81,24 @@ export default {
         }
       });
 
-      console.log(columns);
-      console.log(rows);
+      const gridHeaders = [];
+      const field = "field";
+      columns.forEach((column, index) => {
+        gridHeaders.push({
+          text: column,
+          value: `${field}${index}`,
+        });
+      });
+
+      const gridRows = [];
+      rows.forEach((row) => {
+        const gridRow = {};
+        row.forEach((cell, index) => {
+          gridRow[`${field}${index}`] = cell;
+        });
+        gridRows.push(gridRow);
+      });
+      
     });
   },
 };
