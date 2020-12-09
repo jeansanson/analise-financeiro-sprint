@@ -7,6 +7,7 @@
       :items-per-page="rowCountLimit"
       hide-default-footer
       class="elevation-1"
+      @click:row="handleClick"
     ></v-data-table>
   </v-container>
 </template>
@@ -24,6 +25,12 @@ export default {
     stocks: [],
     rowCountLimit: 0,
   }),
+  methods: {
+    handleClick(args) {
+     console.log(args)
+
+    },
+  },
   created() {
     const formData = new FormData();
     formData.append("firma_ebit_min", "0");
